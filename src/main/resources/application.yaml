@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hoge
+    username: postgres
+    password:
+  application:
+    name: todoApp
+  h2:
+    console:
+      enabled: true
