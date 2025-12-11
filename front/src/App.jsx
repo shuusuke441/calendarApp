@@ -53,7 +53,6 @@ function App() {
 
     //削除機能
     const del = async (id) => {
-        eventList.filter((e) => e.id !== id);
         await fetch(`/api/events/${id}`, {
             method: "DELETE",
         });
