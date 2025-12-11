@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import AddEvent from "./componets/AddEvent.jsx";
+import EventList from "./componets/EventList.jsx";
 
 
 function App() {
@@ -78,16 +79,7 @@ function App() {
                       handleClickAddEvent={handleClickAddEvent} setComment={setComment} setEventTitle={setEventTitle}
                       setEventDate={setEventDate} setEventUrl={setEventUrl}/>
             <div>COUNTER</div>
-            <div>📅</div>
-            {/*//ここからはリストの表示*/}
-            {eventList.map((post, index) => (
-                <div className="post" key={index}>
-                    <p>タイトル：{post.eventTitle}</p>
-                    <p>テキスト：{post.eventUrl}</p>
-                    <p>イベント日：{post.eventDate}</p>
-                    <button onClick={() => del(post.id)}>ゴミ箱</button>
-                </div>
-            ))}
+            <EventList eventList={eventList} del={del}/>
         </>
     )
 }
