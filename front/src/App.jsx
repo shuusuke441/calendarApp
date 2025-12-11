@@ -6,6 +6,7 @@ import AddEvent from "./componets/AddEvent.jsx";
 import EventList from "./componets/EventList.jsx";
 
 
+
 function App() {
     const [eventTitle, setEventTitle] = useState("")
     const [eventList, setEventList] = useState([])
