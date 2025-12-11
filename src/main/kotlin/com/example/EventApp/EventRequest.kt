@@ -7,6 +7,5 @@ data class EventRequest (
     var eventUrl: String,
     var eventDate: LocalDateTime,
     var comment : String,
-
 )
 

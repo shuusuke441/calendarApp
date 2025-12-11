@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import AddEvent from "./componets/AddEvent.jsx";
+
 
 function App() {
     const [eventTitle, setEventTitle] = useState("")
@@ -20,25 +22,29 @@ function App() {
 
 //サーバーにPost
     const handleClickAddEvent = async () => {
-        try {
-            await fetch("/api/events", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    eventTitle: eventTitle,
-                    eventUrl: eventUrl,
-                    eventDate: eventDate,
-                    comment: comment,
-                }),
-            });
-            resetForm();
-            await getFetchEvent()
-        } catch (error) {
-            console.error(error)
+        if (eventTitle === "" || eventDate === "") return;
+        else {
+            try {
+                await fetch("/api/events", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        eventTitle: eventTitle,
+                        eventUrl: eventUrl,
+                        eventDate: eventDate,
+                        comment: comment,
+                    }),
+                });
+                resetForm();
+                await getFetchEvent()
+            } catch (error) {
+                console.error(error)
+            }
         }
     }
+
 
 //一覧表示Get
     const getFetchEvent = async () => {
@@ -68,14 +74,9 @@ function App() {
 
     return (
         <>
-            <h1>イベントカレンダー</h1>
-            <button onClick={handleClickAddEvent}>イベント追加</button>
-            <input type={"text"} value={eventTitle} placeholder={"イベント名"}
-                   onChange={(e) => setEventTitle(e.target.value)}/>
-            <input type={"text"} value={eventUrl} placeholder={"リンク"} onChange={(e) => setEventUrl(e.target.value)}/>
-            <input type={"text"} value={comment} placeholder={"一言コメント"}
-                   onChange={(e) => setComment(e.target.value)}/>
-            <input type={"datetime-local"} value={eventDate} onChange={(e) => setEventDate(e.target.value)}/>
+            <AddEvent eventTitle={eventTitle} eventUrl={eventUrl} comment={comment} eventDate={eventDate}
+                      handleClickAddEvent={handleClickAddEvent} setComment={setComment} setEventTitle={setEventTitle}
+                      setEventDate={setEventDate} setEventUrl={setEventUrl}/>
             <div>COUNTER</div>
             <div>📅</div>
             {/*//ここからはリストの表示*/}
@@ -84,7 +85,7 @@ function App() {
                     <p>タイトル：{post.eventTitle}</p>
                     <p>テキスト：{post.eventUrl}</p>
                     <p>イベント日：{post.eventDate}</p>
-                    <button onClick={()=> del(post.id)}>ゴミ箱</button>
+                    <button onClick={() => del(post.id)}>ゴミ箱</button>
                 </div>
             ))}
         </>
