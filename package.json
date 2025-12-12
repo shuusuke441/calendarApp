@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@ant-design/icons": "^6.1.0",
-    "date-fns": "^4.1.0"
+    "@ant-design/icons": "^6.1.0"
   }
 }
