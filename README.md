@@ -31,4 +31,64 @@
 ```bash
 # リポジトリのURLは各自の環境に合わせて変更してください
 git clone git@github.com:shuusuke441/calendarApp.git
-cd <プロジェクト名>
+cd calendarApp
+
+```
+
+### 1-3. 依存関係の解決とビルド
+
+Gradleラッパーを使用してプロジェクトをビルドし、必要な依存ライブラリをダウンロードします。
+
+Bash
+### macOS / Linux の場合
+```
+./gradlew build
+```
+
+### Windows の場合
+```
+.\gradlew build
+```
+
+## 2. 🗃️ データベースの設定
+本プロジェクトでは、開発初期には組み込みのH2データベースを使用し、連携・本番環境ではPostgreSQLを使用します。
+
+### 2-1. H2 (ローカル開発用)
+
+特別な設定は不要です。アプリケーションを起動すれば自動的にH2データベースがメモリ上に構築されます。
+
+H2 Consoleアクセス:
+
+起動後、ブラウザで http://localhost:8080/h2-console にアクセスするとDB内容を確認できます。<br>
+（接続情報は application.properties を参照してください）
+
+### 2-2. PostgreSQL (連携/本番環境用)
+
+PostgreSQLに接続する場合、src/main/resources/application.properties または application.yml に以下の設定を追記または編集する必要があります。
+
+Properties
+### application.properties (PostgreSQL 設定例)
+```
+spring.datasource.url=jdbc:postgresql://<ホスト名>:<ポート>/<データベース名>
+spring.datasource.username=<ユーザー名>
+spring.datasource.password=<パスワード>
+```
+### DBスキーマの自動更新を有効にする設定 (開発時に推奨)
+```
+spring.jpa.hibernate.ddl-auto=update
+```
+## 3. ▶️ アプリケーションの実行
+ビルドが成功し、データベース設定が完了したら、以下のコマンドでアプリケーションを起動します。
+
+Bash
+### macOS / Linux の場合
+```
+./gradlew bootRun
+```
+### Windows の場合
+```
+.\gradlew bootRun
+```
+
+アプリケーションが起動したら、http://localhost:8080 からアクセスできます。
+
