@@ -29,7 +29,6 @@
 以下のコマンドを実行して、リポジトリをローカルに複製し、プロジェクトディレクトリへ移動します。
 
 ```bash
-# リポジトリのURLは各自の環境に合わせて変更してください
 git clone git@github.com:shuusuke441/calendarApp.git
 cd calendarApp
 
