@@ -85,3 +85,9 @@ button:focus-visible {
     margin: 20px;
     font-size: 40px;
 }
+
+.rate-card {
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}

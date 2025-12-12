@@ -16,8 +16,6 @@ export default function EventList({eventList, del }) {
     return (
         <>
             <div>📅</div>
-
-
             <Row gutter={16}>
                 {eventList.map((post, index) => (
                     <Col span={8} key={index} className="post">

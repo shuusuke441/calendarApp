@@ -1,4 +1,4 @@
-import {Input} from "antd";
+import {Card, Input} from "antd";
 import {Rate} from 'antd';
 
 export default function AddEvent({
@@ -26,7 +26,10 @@ export default function AddEvent({
                    onChange={(e) => setComment(e.target.value)} className="form"/>
             <Input type={"datetime-local"} value={eventDate} onChange={(e) => setEventDate(e.target.value)}
                    className="form"/>
-            <p>重要度：</p><Rate allowHalf onChange={setRate} value={rate}/>
+            <Card style={{ width: 200 }} className="rate-card">
+                <p>重要度</p><Rate allowHalf onChange={setRate} value={rate}/>
+            </Card>
+
         </div>
     )
 }
