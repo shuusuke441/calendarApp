@@ -25,6 +25,7 @@ class EventController(private val eventRepository: EventRepository) {
             eventDate = eventRequest.eventDate,
             eventUrl = eventRequest.eventUrl,
             comment = eventRequest.comment,
+            rate = eventRequest.rate,
             )
         eventRepository.save(entity)
         return "イベントが登録されました！"

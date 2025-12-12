@@ -1,6 +1,18 @@
-import {Card, Col, Row, Space} from "antd";
+import {Card, Col, Rate, Row, Space} from "antd";
+import {AntDesignOutlined, DeleteTwoTone} from '@ant-design/icons';
+import {differenceInCalendarDays} from "date-fns";
 
-export default function EventList({eventList, del}) {
+function DeleteOutlined() {
+    return null;
+}
+
+export default function EventList({eventList, del }) {
+
+    const diffTime = (eventDate) => {
+        const nowDate = new Date();
+        return differenceInCalendarDays(eventDate , nowDate)
+    }
+
     return (
         <>
             <div>📅</div>
@@ -10,10 +22,12 @@ export default function EventList({eventList, del}) {
                 {eventList.map((post, index) => (
                     <Col span={8} key={index} className="post">
                         <Card title={post.eventTitle} variant="borderless">
-                            <p>イベント日：{post.eventDate}</p>
+                            <p>イベントまであと{diffTime(post.eventDate).toString()}日</p>
+                            <p>イベント日：{new Date(post.eventDate).toLocaleString()}</p>
                             <p>一言コメント：{post.comment}</p>
                             <p>イベントURL：{post.eventUrl}</p>
-                            <button onClick={() => del(post.id)}>ゴミ箱</button>
+                            <Rate allowHalf disabled defaultValue={post.rate}></Rate>
+                            <DeleteTwoTone onClick={() => del(post.id)} className={"delete"}/>
                         </Card>
                     </Col>
                 ))}

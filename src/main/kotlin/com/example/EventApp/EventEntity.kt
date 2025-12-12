@@ -16,4 +16,5 @@ class EventEntity(
     var eventDate: LocalDateTime,
     var comment : String? = null,
     val createdAt: LocalDateTime = LocalDateTime.now(),
+    var rate: Float? = 0f,
     )
